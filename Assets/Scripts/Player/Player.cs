@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public float rayDistance = 10f;
     public bool isGrounded = false;
     private Rigidbody rigid;
+
     #region Unity Events
     private void OnDrawGizmos()
     {

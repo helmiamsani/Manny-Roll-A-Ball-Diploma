@@ -56,6 +56,26 @@ public class TestSuite
         Assert.IsTrue(item == null);
     }
 
+    [UnityTest]
+    public IEnumerator ItemCollectedAndScoreAdded()
+    {
+        // Spawn an item (same as above)
+        GameObject itemPrefab = Resources.Load<GameObject>("Prefabs/Entities/Item");
+        Vector3 playerPosition = player.transform.position;
+        GameObject item = Object.Instantiate(itemPrefab, playerPosition, Quaternion.identity);
+
+        // Record old score in an int
+        int score = gameManager.score;
+        Debug.Log("Score " + score);
+
+        // WaitForFixedUpdate
+        yield return new WaitForFixedUpdate();
+        // WaitForEndOffFrame
+        yield return new WaitForEndOfFrame();
+        // Assert IsTrue old score != new score
+        Assert.IsTrue(score);
+    }
+
     [TearDown]
     public void TearDown()
     {
