@@ -63,17 +63,25 @@ public class TestSuite
         GameObject itemPrefab = Resources.Load<GameObject>("Prefabs/Entities/Item");
         Vector3 playerPosition = player.transform.position;
         GameObject item = Object.Instantiate(itemPrefab, playerPosition, Quaternion.identity);
-
+        bool differentScore = false;
         // Record old score in an int
-        int score = gameManager.score;
-        Debug.Log("Score " + score);
+        int oldScore = gameManager.score;
+        Debug.Log("Old Score: " + oldScore);
+        gameManager.AddScore(gameManager.score);
+        int newScore = gameManager.score;
+        Debug.Log("New Score: " + newScore);
+
+        if (newScore != oldScore)
+        {
+            differentScore = true;
+        }
 
         // WaitForFixedUpdate
         yield return new WaitForFixedUpdate();
         // WaitForEndOffFrame
         yield return new WaitForEndOfFrame();
         // Assert IsTrue old score != new score
-        Assert.IsTrue(score);
+        Assert.IsTrue(differentScore);
     }
 
     [TearDown]
