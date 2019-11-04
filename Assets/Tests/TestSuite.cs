@@ -84,6 +84,16 @@ public class TestSuite
         Assert.IsTrue(differentScore);
     }
 
+    [UnityTest]
+    public IEnumerator PlayerJump()
+    {
+        yield return new WaitForEndOfFrame();
+        float playerPositionY = player.transform.localPosition.y;
+        player.Jump();
+        yield return new WaitForEndOfFrame();
+        Assert.Greater(player.transform.localPosition.y, playerPositionY);
+    }
+
     [TearDown]
     public void TearDown()
     {

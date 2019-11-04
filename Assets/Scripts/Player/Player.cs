@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
     }
     #endregion
     #region Custom
-    private void Jump()
+    public void Jump()
     {
         if (isGrounded)
         {
